@@ -90,7 +90,7 @@ export default function Slide09Probability() {
         style={{ background: "#fffbeb", border: "1px solid #fde68a" }}
       >
         <p className="text-[25px] font-semibold" style={{ color: "#92400e" }}>
-          Every AI prediction is a probability — math under the hood
+          Every AI prediction is a complex probability result
         </p>
       </motion.div>
 
