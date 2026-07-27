@@ -5,80 +5,153 @@ import DiffusionModel from "../math/DiffusionModel";
 import EquationReveal from "../math/EquationReveal";
 
 const STEPS = [
-  { token: "x", label: "ₜ", caption: "xₜ = the noisy image at step t", color: "#111827" },
-  { token: " = x", label: "ₜ", caption: "new image = current image, then corrected", color: "#6b7280" },
-  { token: " − σ", label: "ₜ", caption: "σₜ = how much noise to remove this step", color: "#f59e0b" },
-  { token: " · ε(x", label: "ₜ", caption: "ε = the AI's prediction of where the noise is", color: "#7c3aed" },
-  { token: ")", label: "", caption: "subtract the predicted noise → cleaner image", color: "#10b981" },
+  {
+    token: "x",
+    label: "ₜ₋₁",
+    caption: "Cleaner image after one reverse diffusion step.",
+    color: "#111827",
+  },
+  {
+    token: " = x",
+    label: "ₜ",
+    caption: "Current noisy image.",
+    color: "#6b7280",
+  },
+  {
+    token: " − σ",
+    label: "ₜ",
+    caption: "σₜ controls how much noise is removed.",
+    color: "#f59e0b",
+  },
+  {
+    token: " · ε",
+    label: "θ(xₜ,t)",
+    caption: "The neural network predicts the noise.",
+    color: "#7c3aed",
+  },
 ];
 
 export default function Slide05Diffusion() {
   return (
     <div className="relative flex h-full w-full flex-col bg-white px-12 py-7">
-      {/* header */}
+      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-start"
+        className="flex items-center"
       >
         <div className="flex items-center gap-3">
-          <div className="h-9 w-1.5 rounded-full" style={{ background: "#7c3aed" }} />
-          <h2 className="text-[44px] font-bold leading-tight" style={{ color: "#111827", letterSpacing: "-0.01em" }}>
+          <div
+            className="h-9 w-1.5 rounded-full"
+            style={{ background: "#7c3aed" }}
+          />
+          <h2
+            className="text-[44px] font-bold"
+            style={{ color: "#111827" }}
+          >
             Diffusion Models
           </h2>
         </div>
       </motion.div>
 
-      {/* two-column body */}
-      <div className="mt-5 grid grid-cols-2 gap-6" style={{ minHeight: 0 }}>
-        {/* left: equation + explanation */}
+      <div className="mt-5 grid grid-cols-2 gap-6">
+
+        {/* LEFT */}
         <div className="flex flex-col">
+
           <div className="mb-2 text-[20px] font-bold uppercase tracking-[0.14em] text-gray-500">
-            The denoising equation
-          </div>
-          <div className="rounded-xl border border-gray-200 bg-gray-50 p-3">
-            <ul className="list-disc pl-5 space-y-1.5 text-[21px] leading-relaxed text-gray-600">
-              <li>Predicts noise then subtracts it</li>
-              <li>Pure noise becomes a clear image</li>
-              <li>A differential equation run backwards</li>
-            </ul>
+            Reverse-Time Differential Equation
           </div>
 
-          <div className="mt-3 mb-1 text-[20px] font-bold uppercase tracking-[0.14em] text-gray-500">
-            Revealed step by step
-          </div>
-          <EquationReveal steps={STEPS} active interval={1500} />
+          <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
 
-          <div className="mt-4 grid grid-cols-2 gap-2">
-            {[
-              { t: "DALL·E & Stable Diffusion", c: "#7c3aed", b: "#f5f3ff" },
-              { t: "Solves a DE backwards", c: "#2563eb", b: "#eff6ff" },
-            ].map((x, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1 + i * 0.15 }}
-                className="rounded-xl p-2.5"
-                style={{ background: x.b, border: `1px solid ${x.c}22` }}
-              >
-                <div className="text-[10px] font-semibold leading-tight" style={{ color: "#374151" }}>
-                  {x.t}
-                </div>
-              </motion.div>
-            ))}
+            <div className="eq text-center text-[30px] font-bold text-gray-900">
+              dx/dt = f(x,t) − g(t)²∇ log p(x,t)
+            </div>
+
+            <p className="mt-3 text-[18px] leading-relaxed text-gray-600">
+              This is the mathematical equation that describes how a noisy image
+              evolves backwards toward a clean image.
+            </p>
+
+          </div>
+
+          <div className="mt-4 mb-2 text-[20px] font-bold uppercase tracking-[0.14em] text-gray-500">
+            Practical Denoising Step
+          </div>
+
+          <div className="rounded-xl border border-purple-200 bg-purple-50 p-3">
+
+            <div className="eq text-center text-[28px] font-bold text-purple-800">
+              xₜ₋₁ = xₜ − σₜ · εθ(xₜ,t)
+            </div>
+
+            <p className="mt-2 text-center text-[17px] text-gray-600">
+              The AI predicts the noise and subtracts a small portion of it at
+              every step.
+            </p>
+
+          </div>
+
+          <div className="mt-4 mb-2 text-[20px] font-bold uppercase tracking-[0.14em] text-gray-500">
+            Equation Breakdown
+          </div>
+
+          <EquationReveal
+            steps={STEPS}
+            active
+            interval={1500}
+          />
+
+          <div className="mt-5 grid grid-cols-2 gap-3">
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="rounded-xl border border-purple-200 bg-purple-50 p-3"
+            >
+              <div className="text-[15px] font-bold text-purple-700">
+                Stable Diffusion
+              </div>
+
+              <div className="mt-1 text-[14px] text-gray-600">
+                Starts from random Gaussian noise.
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.15 }}
+              className="rounded-xl border border-blue-200 bg-blue-50 p-3"
+            >
+              <div className="text-[15px] font-bold text-blue-700">
+                Reverse Process
+              </div>
+
+              <div className="mt-1 text-[14px] text-gray-600">
+                Repeatedly solves the reverse diffusion process until a clean
+                image appears.
+              </div>
+            </motion.div>
+
           </div>
 
         </div>
 
-        {/* right: animated diffusion */}
+        {/* RIGHT */}
         <div className="flex flex-col">
+
           <div className="mb-2 text-[20px] font-bold uppercase tracking-[0.14em] text-gray-500">
-            Watch noise become an image
+            Watch Noise Become an Image
           </div>
+
           <DiffusionModel active />
+
         </div>
+
       </div>
 
       <div className="absolute bottom-5 right-10 text-[20px] font-semibold tracking-[0.2em] text-gray-300">
