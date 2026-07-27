@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { Image, Mic, Bot } from "lucide-react";
 
 const EXAMPLES = [
@@ -40,6 +41,11 @@ const EXAMPLES = [
 ];
 
 export default function Slide03Problem() {
+  const [showSpeaker, setShowSpeaker] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSpeaker(false), 4000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div className="relative flex h-full w-full flex-col bg-white px-12 py-7">
       <motion.div
@@ -56,16 +62,18 @@ export default function Slide03Problem() {
         </div>
       </motion.div>
 
-      <motion.p
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-2 text-[25px] leading-relaxed"
+        className="mt-2"
         style={{ color: "#6b7280" }}
       >
-        AI does things that seem intelligent. But a computer only processes numbers.
-        So how does it generate images, understand speech, and make stable decisions?
-      </motion.p>
+        <ul className="list-disc pl-5 space-y-1.5 text-[25px] leading-relaxed">
+          <li>AI appears intelligent but only processes numbers</li>
+          <li>How are images, speech, and control possible?</li>
+        </ul>
+      </motion.div>
 
       <div className="mt-5 grid grid-cols-3 gap-4">
         {EXAMPLES.map((e, i) => {
@@ -96,32 +104,24 @@ export default function Slide03Problem() {
         })}
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1 }}
-        className="mt-6 rounded-2xl px-6 py-5"
-        style={{ background: "#111827" }}
-      >
-        <div className="text-center">
-          <div className="text-[20px] font-bold uppercase tracking-[0.22em] text-gray-400">
-            The answer
-          </div>
-          <div className="mt-2 text-[32px] font-bold leading-snug text-white">
-            Behind every AI feature is a{" "}
-            <span style={{ background: "linear-gradient(90deg,#a78bfa,#5eead4,#fbbf24)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              mathematical equation
-            </span>{" "}
-            from our syllabus.
-          </div>
-          <ul className="mt-2 list-disc pl-5 space-y-1 text-[22px] text-gray-400 text-left max-w-2xl mx-auto">
-            <li>Differential Equations model how systems evolve over time</li>
-            <li>Fourier Transform converts signals between time and frequency domains</li>
-            <li>Laplace Transform simplifies complex dynamic system analysis</li>
-          </ul>
-        </div>
-      </motion.div>
 
+
+      <AnimatePresence>
+        {showSpeaker && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+            className="absolute top-5 right-5 z-20 rounded-full px-4 py-2 shadow-lg"
+            style={{ background: "rgba(37,99,235,0.92)" }}
+          >
+            <span className="text-[18px] font-bold text-white">Naim Hossain</span>
+            <span className="mx-2 text-white/60">|</span>
+            <span className="text-[16px] font-medium text-white/80">252-15-178</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="absolute bottom-5 right-10 text-[20px] font-semibold tracking-[0.2em] text-gray-300">
         03 / 11
       </div>

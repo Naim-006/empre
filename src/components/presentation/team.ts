@@ -35,7 +35,7 @@ export const TEAM: TeamMember[] = [
   {
     id: "252-15-839",
     name: "Nazmus Sakib",
-    role: "Synthesis & Conclusion",
+    role: "Probability, Conclusion & Thank You",
     color: "#f59e0b",
   },
 ];

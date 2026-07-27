@@ -47,17 +47,11 @@ export default function Slide01Cover() {
           Applications of Engineering Mathematics
           <br />
           <span style={{ background: "linear-gradient(90deg,#2563eb,#7c3aed,#0ea5a4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-            in Artificial Intelligence
+            in CSE
           </span>
         </motion.h1>
 
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-4 h-0.5 w-16 rounded-full"
-          style={{ background: "linear-gradient(90deg,#2563eb,#7c3aed)" }}
-        />
+       
       </div>
 
       {/* bottom section: team left, faculty right */}
@@ -108,7 +102,7 @@ export default function Slide01Cover() {
             Prof. Dr. Bimal Chandra Das
           </div>
           <div className="text-[17px] font-medium leading-snug mt-1" style={{ color: "#475569" }}>
-            Associate Dean &amp; Professor,<br />Department of Computer Science and Engineering
+            Associate Dean &amp; Professor,<br />Department of Computer Science and Engineering, <br />Daffodil International University
           </div>
         </motion.div>
       </div>

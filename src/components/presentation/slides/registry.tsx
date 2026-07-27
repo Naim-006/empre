@@ -7,7 +7,7 @@ import Slide05Diffusion from "./Slide05Diffusion";
 import Slide06SoundSpeech from "./Slide06SoundSpeech";
 import Slide07Fourier from "./Slide07Fourier";
 import Slide08ControlStability from "./Slide08ControlStability";
-import Slide09Pipeline from "./Slide09Pipeline";
+import Slide09Probability from "./Slide09Probability";
 import Slide10Conclusion from "./Slide10Conclusion";
 import Slide11ThankYou from "./Slide11ThankYou";
 
@@ -19,7 +19,7 @@ import Slide11ThankYou from "./Slide11ThankYou";
  * Member 1 (3–5):  The Problem · AI Image Generation · Diffusion Models
  * Member 2 (6–7):  AI for Sound & Speech · Fourier Transform
  * Member 3 (8):    AI Control & Stability (Laplace Transform)
- * Member 4 (9–11): The AI Pipeline · Conclusion · Thank You
+ *   Member 4 (9–11): Probability in AI · Conclusion · Thank You
  */
 export const slideRegistry: SlideMeta[] = [
   // ===== Slide 1 — AI-Generated Scene =====
@@ -50,7 +50,7 @@ export const slideRegistry: SlideMeta[] = [
     notes: [
       "AI does things that seem intelligent — but a computer only processes numbers.",
       "How does AI generate images? How does it understand speech? How does it stay stable in real-time control?",
-      "The answer: behind each feature is a mathematical equation from our syllabus. Our team will show how.",
+      "The answer: behind each feature is a mathematical equation. Our team will show how.",
     ],
     Component: Slide03Problem,
   },
@@ -116,13 +116,13 @@ export const slideRegistry: SlideMeta[] = [
   // ===== Member 4 — Synthesis =====
   {
     id: 9,
-    title: "The AI Pipeline",
+    title: "Probability in AI",
     notes: [
-      "Member 4 takes over. Three transforms from our syllabus, each powering a different branch of AI.",
-      "Differential Equations power image generation. Fourier Transform powers speech recognition. Laplace Transform powers control and stability.",
-      "Remove any one and a piece of modern AI stops working. Together, they form one intelligent system.",
+      "Member 4 takes over. Topic: Probability in AI decision making.",
+      "AI models output probabilities, not certainties.",
+      "Example: image classifier predicts 95% cat, 5% dog.",
     ],
-    Component: Slide09Pipeline,
+    Component: Slide09Probability,
   },
   {
     id: 10,
@@ -130,7 +130,7 @@ export const slideRegistry: SlideMeta[] = [
     notes: [
       "Recap the journey: the problem, then Differential Equations, Fourier Transform, and Laplace Transform — together they power AI.",
       "The key message: Engineering Mathematics is not just theory — it is the engine of Artificial Intelligence.",
-      "Every AI feature we use daily — image generators, voice assistants, self-driving cars — runs on the mathematics from our syllabus.",
+      "Every AI feature we use daily — image generators, voice assistants, self-driving cars — runs on mathematics.",
     ],
     Component: Slide10Conclusion,
   },

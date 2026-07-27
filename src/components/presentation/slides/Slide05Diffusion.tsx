@@ -39,9 +39,9 @@ export default function Slide05Diffusion() {
           </div>
           <div className="rounded-xl border border-gray-200 bg-gray-50 p-3">
             <ul className="list-disc pl-5 space-y-1.5 text-[21px] leading-relaxed text-gray-600">
-              <li>AI predicts the noise and subtracts it at each step</li>
-              <li>Repeated many times: pure noise becomes a clear image</li>
-              <li>This is a <span className="font-semibold" style={{ color: "#7c3aed" }}>differential equation solved in reverse</span></li>
+              <li>Predicts noise then subtracts it</li>
+              <li>Pure noise becomes a clear image</li>
+              <li>A differential equation run backwards</li>
             </ul>
           </div>
 
@@ -52,8 +52,8 @@ export default function Slide05Diffusion() {
 
           <div className="mt-4 grid grid-cols-2 gap-2">
             {[
-              { t: "Used by DALL·E & Stable Diffusion", c: "#7c3aed", b: "#f5f3ff" },
-              { t: "Solves a DE in reverse", c: "#2563eb", b: "#eff6ff" },
+              { t: "DALL·E & Stable Diffusion", c: "#7c3aed", b: "#f5f3ff" },
+              { t: "Solves a DE backwards", c: "#2563eb", b: "#eff6ff" },
             ].map((x, i) => (
               <motion.div
                 key={i}
@@ -70,15 +70,6 @@ export default function Slide05Diffusion() {
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.5 }}
-            className="mt-3 rounded-lg px-3 py-2 text-[20px]"
-            style={{ background: "#f0fdfa", border: "1px solid #ccfbf1", color: "#0f766e" }}
-          >
-            Next: Member 3 shows how AI understands sound using the Fourier Transform.
-          </motion.div>
         </div>
 
         {/* right: animated diffusion */}

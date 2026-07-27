@@ -130,18 +130,7 @@ export default function LaplaceTransform({ active }: { active: boolean }) {
       </div>
 
       {/* formal note */}
-      <div className="rounded-xl p-3" style={{ background: "#fffbeb", border: "1px solid #fde68a" }}>
-        <div className="mb-1 text-[20px] font-bold uppercase tracking-[0.16em] text-gray-500">
-          Formal definition
-        </div>
-        <div className="eq text-[18px] font-bold text-gray-800">
-          F(s) = ∫₀^∞ f(t) e⁻ˢᵗ dt
-        </div>
-        <div className="mt-1 text-[20px] leading-snug text-gray-600">
-          Converts time-domain signals into the s-domain. Poles on the left half-plane
-          mean a stable system — essential for AI control and reinforcement learning.
-        </div>
-      </div>
+  
     </div>
   );
 }

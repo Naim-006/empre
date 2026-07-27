@@ -38,9 +38,9 @@ export default function Slide07Fourier() {
             The transform equation
           </div>
           <ul className="list-disc pl-5 space-y-1.5 text-[21px] leading-relaxed text-gray-600 rounded-xl border border-gray-200 bg-gray-50 p-3">
-            <li>Measures how much of each pure frequency is present in a sound wave</li>
-            <li>Converts <span className="font-semibold" style={{ color: "#0ea5a4" }}>time → frequency</span> domain</li>
-            <li>Powers voice recognition (Siri, Alexa) and audio compression (MP3)</li>
+            <li>Measures frequency content in waves</li>
+            <li><span className="font-semibold" style={{ color: "#0ea5a4" }}>Time → frequency</span> domain</li>
+            <li>Powers voice recognition and MP3</li>
           </ul>
 
           <div className="mt-3 mb-1 text-[20px] font-bold uppercase tracking-[0.14em] text-gray-500">
@@ -50,8 +50,8 @@ export default function Slide07Fourier() {
 
           <div className="mt-4 grid grid-cols-2 gap-2">
             {[
-              { t: "Used in Siri, Alexa, ChatGPT voice", c: "#0ea5a4", b: "#f0fdfa" },
-              { t: "Also powers audio compression (MP3)", c: "#2563eb", b: "#eff6ff" },
+              { t: "Voice AI (Siri, Alexa, ChatGPT)", c: "#0ea5a4", b: "#f0fdfa" },
+              { t: "Audio compression via MP3", c: "#2563eb", b: "#eff6ff" },
             ].map((x, i) => (
               <motion.div
                 key={i}
@@ -68,15 +68,6 @@ export default function Slide07Fourier() {
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.5 }}
-            className="mt-3 rounded-lg px-3 py-2 text-[20px]"
-            style={{ background: "#fffbeb", border: "1px solid #fde68a", color: "#92400e" }}
-          >
-            Next: Member 4 shows the Laplace Transform in AI control systems.
-          </motion.div>
         </div>
 
         {/* right: animated fourier */}

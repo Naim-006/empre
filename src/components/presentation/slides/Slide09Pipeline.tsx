@@ -1,7 +1,8 @@
 "use client";
 
 import { Image, Volume2, Settings } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 const STAGES = [
   {
     math: "Differential Equations",
@@ -33,6 +34,11 @@ const STAGES = [
 ];
 
 export default function Slide09Pipeline() {
+  const [showSpeaker, setShowSpeaker] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSpeaker(false), 4000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div className="relative flex h-full w-full flex-col bg-white px-12 py-7">
       {/* decorative */}
@@ -60,8 +66,8 @@ export default function Slide09Pipeline() {
         className="list-disc pl-5 space-y-1.5 mt-2 text-[25px] leading-relaxed"
         style={{ color: "#6b7280" }}
       >
-        <li>Three transforms from our Engineering Mathematics syllabus</li>
-        <li>Each powers a different branch of modern AI</li>
+        <li>Three mathematical transforms power modern AI</li>
+        <li>Each drives a different AI application</li>
       </motion.ul>
 
       {/* pipeline: three columns with flow */}
@@ -107,35 +113,24 @@ export default function Slide09Pipeline() {
         ))}
       </div>
 
-      {/* result banner */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-        className="mt-6 rounded-2xl px-6 py-4"
-        style={{ background: "#111827" }}
-      >
-        <div className="text-center">
-          <div className="text-[20px] font-bold uppercase tracking-[0.22em] text-gray-400">
-            The result
-          </div>
-          <p className="mt-1.5 text-[30px] font-bold leading-snug text-white">
-            Three syllabus topics,{" "}
-            <span style={{ background: "linear-gradient(90deg,#a78bfa,#5eead4,#fbbf24)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              one intelligent system
-            </span>
-          </p>
-          <p className="mt-1 text-[21px] text-gray-400">
-            Remove any one and a piece of modern AI stops working.
-          </p>
-        </div>
-      </motion.div>
+     
 
-      <div className="absolute bottom-5 left-10 flex items-center gap-2 text-[20px] font-bold" style={{ color: "#f59e0b" }}>
-        <span className="opacity-80">Nazmus Sakib</span>
-        <span className="text-gray-400 font-medium">|</span>
-        <span className="text-gray-500 font-medium">252-15-839</span>
-      </div>
+      <AnimatePresence>
+        {showSpeaker && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+            className="absolute top-5 right-5 z-20 rounded-full px-4 py-2 shadow-lg"
+            style={{ background: "rgba(245,158,11,0.92)" }}
+          >
+            <span className="text-[18px] font-bold text-white">Nazmus Sakib</span>
+            <span className="mx-2 text-white/60">|</span>
+            <span className="text-[16px] font-medium text-white/80">252-15-839</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="absolute bottom-5 right-10 text-[20px] font-semibold tracking-[0.2em] text-gray-300">
         09 / 11
       </div>

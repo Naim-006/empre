@@ -19,16 +19,18 @@ export default function Slide04ImageGeneration() {
         </div>
       </motion.div>
 
-      <motion.p
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-2 text-[25px] leading-relaxed"
+        className="mt-2"
         style={{ color: "#6b7280" }}
       >
-        Tools like DALL·E and Stable Diffusion generate images from text. The math behind them?
-        A differential equation solved in reverse.
-      </motion.p>
+        <ul className="list-disc pl-5 space-y-1.5 text-[25px] leading-relaxed">
+          <li>DALL·E and Stable Diffusion generate images from text</li>
+          <li>Powered by differential equations solved in reverse</li>
+        </ul>
+      </motion.div>
 
       <div className="mt-5 grid grid-cols-2 gap-6">
         <div className="flex flex-col gap-3">
@@ -99,10 +101,12 @@ export default function Slide04ImageGeneration() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
-            className="mt-4 text-center text-[21px] leading-relaxed text-gray-600"
+            className="mt-4 text-[21px] leading-relaxed text-gray-600"
           >
-            Each step removes a little noise —<br />
-            a <span className="font-bold" style={{ color: "#7c3aed" }}>differential equation</span> running in reverse.
+            <ul className="list-disc pl-5 space-y-1.5">
+              <li>Each denoising step removes predicted noise</li>
+              <li>A differential equation running in reverse</li>
+            </ul>
           </motion.div>
         </motion.div>
       </div>

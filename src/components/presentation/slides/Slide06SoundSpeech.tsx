@@ -1,7 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 export default function Slide06SoundSpeech() {
+  const [showSpeaker, setShowSpeaker] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSpeaker(false), 4000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div className="relative flex h-full w-full flex-col bg-white px-12 py-7">
       {/* header */}
@@ -19,16 +25,16 @@ export default function Slide06SoundSpeech() {
         </div>
       </motion.div>
 
-      <motion.p
+      <motion.ul
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-2 text-[25px] leading-relaxed"
+        className="mt-2 list-disc pl-5 space-y-1 text-[25px] leading-relaxed"
         style={{ color: "#6b7280" }}
       >
-        Voice assistants like Siri and Alexa understand speech. The math behind them?
-        The Fourier Transform — converting sound waves into frequencies.
-      </motion.p>
+        <li>Siri and Alexa convert speech to text</li>
+        <li>Powered by the Fourier Transform</li>
+      </motion.ul>
 
       {/* body: left = intuition, right = concept visual */}
       <div className="mt-5 grid grid-cols-2 gap-6">
@@ -45,8 +51,8 @@ export default function Slide06SoundSpeech() {
               Step 1 — Sound is a Wave
             </div>
             <ul className="mt-1.5 list-disc pl-5 space-y-1.5 text-[22px] leading-relaxed text-gray-700">
-              <li>When you speak, the air vibrates</li>
-              <li>A microphone records this as a <span className="font-bold" style={{ color: "#0ea5a4" }}>complex wave</span> over time</li>
+              <li>Speaking makes air vibrate</li>
+              <li>Microphone records a complex wave</li>
             </ul>
           </motion.div>
 
@@ -61,8 +67,8 @@ export default function Slide06SoundSpeech() {
               Step 2 — Split into Frequencies
             </div>
             <ul className="mt-1.5 list-disc pl-5 space-y-1.5 text-[22px] leading-relaxed text-gray-700">
-              <li>Fourier Transform breaks the wave into individual <span className="font-bold" style={{ color: "#2563eb" }}>pure frequencies</span></li>
-              <li>Like separating a chord into individual notes</li>
+              <li>FT splits wave into pure frequencies</li>
+              <li>Like a chord into separate notes</li>
             </ul>
           </motion.div>
 
@@ -77,8 +83,8 @@ export default function Slide06SoundSpeech() {
               Step 3 — Recognize Patterns
             </div>
             <ul className="mt-1.5 list-disc pl-5 space-y-1.5 text-[22px] leading-relaxed text-gray-700">
-              <li>AI matches frequency patterns to known words</li>
-              <li>This is how <span className="font-bold" style={{ color: "#10b981" }}>speech recognition</span> works</li>
+              <li>AI matches patterns to known words</li>
+              <li>This is speech recognition</li>
             </ul>
           </motion.div>
         </div>
@@ -95,23 +101,34 @@ export default function Slide06SoundSpeech() {
             The core idea
           </div>
           <WaveToFreqConcept />
-          <motion.div
+          <motion.ul
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
-            className="mt-4 text-center text-[21px] leading-relaxed text-gray-600"
+            className="mt-4 list-disc pl-5 space-y-1 text-left text-[21px] leading-relaxed text-gray-600"
           >
-            One complex wave becomes many pure tones —<br />
-            this is the <span className="font-bold" style={{ color: "#0ea5a4" }}>Fourier Transform</span>.
-          </motion.div>
+            <li>Complex wave splits into pure frequencies</li>
+            <li>This is the <span className="font-bold" style={{ color: "#0ea5a4" }}>Fourier Transform</span></li>
+          </motion.ul>
         </motion.div>
       </div>
 
-      <div className="absolute bottom-5 left-10 flex items-center gap-2 text-[20px] font-bold" style={{ color: "#7c3aed" }}>
-        <span className="opacity-80">Md Nuruzzaman Raju</span>
-        <span className="text-gray-400 font-medium">|</span>
-        <span className="text-gray-500 font-medium">252-15-363</span>
-      </div>
+      <AnimatePresence>
+        {showSpeaker && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+            className="absolute top-5 right-5 z-20 rounded-full px-4 py-2 shadow-lg"
+            style={{ background: "rgba(124,58,237,0.92)" }}
+          >
+            <span className="text-[18px] font-bold text-white">Md Nuruzzaman Raju</span>
+            <span className="mx-2 text-white/60">|</span>
+            <span className="text-[16px] font-medium text-white/80">252-15-363</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="absolute bottom-5 right-10 text-[20px] font-semibold tracking-[0.2em] text-gray-300">
         06 / 11
       </div>
