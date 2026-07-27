@@ -18,7 +18,6 @@ export default function PresentationApp() {
   const [scale, setScale] = useState(1);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const wheelLock = useRef(false);
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
 
@@ -99,25 +98,6 @@ export default function PresentationApp() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [index, total, nextSlide, prevSlide, go, showOverview, presenterMode]);
-
-  /* ---- mouse wheel (debounced) ---- */
-  useEffect(() => {
-    const onWheel = (e: WheelEvent) => {
-      if (wheelLock.current) return;
-      if (showOverview || presenterMode) return;
-      const horizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
-      const delta = horizontal ? e.deltaX : e.deltaY;
-      if (Math.abs(delta) < 18) return;
-      wheelLock.current = true;
-      if (delta > 0) nextSlide();
-      else prevSlide();
-      window.setTimeout(() => (wheelLock.current = false), 720);
-    };
-    const el = containerRef.current;
-    if (!el) return;
-    el.addEventListener("wheel", onWheel, { passive: true });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, [nextSlide, prevSlide, showOverview, presenterMode]);
 
   /* ---- touch swipe ---- */
   useEffect(() => {
