@@ -42,7 +42,7 @@ export default function Slide02SmokeScene() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-[36px] font-bold leading-tight text-white text-center"
             >
-              Mr Tagor and Mr Ajmine taking cigarettes
+              Mr Einstein and Ajmine Taking photo
             </motion.p>
 
             <motion.p
@@ -51,7 +51,7 @@ export default function Slide02SmokeScene() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="mt-3 text-[24px] font-semibold text-red-400 text-center"
             >
-              Health tip: Cigarettes is injurious to health
+               Ethical tip: Generating fake image is punishable offense! 
             </motion.p>
           </motion.div>
         )}
